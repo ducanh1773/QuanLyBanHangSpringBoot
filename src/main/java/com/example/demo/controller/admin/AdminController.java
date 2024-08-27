@@ -9,7 +9,7 @@ public class AdminController {
 
     @GetMapping
     public String index(){
-        return "redrect:/admin/";
+        return "redirect:/admin/";
     }
 
     @RequestMapping("/")

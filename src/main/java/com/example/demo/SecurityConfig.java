@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.WebSecurityConfigurer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
@@ -15,6 +16,10 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
     @Autowired
     private CustomUserDetailService customUserDetailService;
+    @Bean
+    BCryptPasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
+    }
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
         httpSecurity.csrf(csrf -> csrf.disable()).authorizeHttpRequests((auth) ->auth.
@@ -27,7 +32,7 @@ public class SecurityConfig {
     }
     @Bean
     WebSecurityCustomizer webSecurityCustomizer(){
-        return (web)->web.ignoring().requestMatchers("/static/**" , "/fe/**");
+        return (web)->web.ignoring().requestMatchers("/static/**" , "/fe/**" , "assets/**");
 
     }
 
