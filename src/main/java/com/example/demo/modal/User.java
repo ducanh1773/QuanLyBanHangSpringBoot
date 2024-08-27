@@ -11,23 +11,23 @@ public class User {
         @Id
         @Column(name = "id")
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id;
+        public Long id;
         @Column(name = "username")
-        private String userName;
+        public String userName;
         @Column(name = "password")
-        private String passWord;
+        public String passWord;
         @Column(name = "enabled")
-        private Boolean enabled;
+        public Boolean enabled;
         @Column(name = "fullname")
-        private String fullName;
+        public String fullName;
         @Column(name = "gender")
-        private Boolean gender;
+        public Boolean gender;
         @Column(name = "address")
-        private String address;
+        public String address;
         @Column(name = "email")
-        private String email;
+        public String email;
         @Column(name = "telephone")
-        private String telephone;
+        public String telephone;
         @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
         private Set<User_Role> userRoles;
         public User() {

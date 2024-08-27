@@ -9,6 +9,7 @@ public class User_Role {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @ManyToOne
     @JoinColumn(name = "userId",referencedColumnName = "id")
     private User user;
