@@ -16,23 +16,42 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
     @Autowired
     private CustomUserDetailService customUserDetailService;
+
     @Bean
-    BCryptPasswordEncoder passwordEncoder(){
+    BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
     @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
-        httpSecurity.csrf(csrf -> csrf.disable()).authorizeHttpRequests((auth) ->auth.
-                requestMatchers("/*").permitAll().
-                requestMatchers("/admin/**").hasAuthority("ADMIN").
-                anyRequest().authenticated()).formLogin(login->login.loginPage("/logon").loginProcessingUrl("/logon")
-                .usernameParameter("username").passwordParameter("password")
-                .defaultSuccessUrl("/admin" , true));
+    SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity
+                .csrf(csrf -> csrf.disable())
+                .authorizeHttpRequests(auth -> auth
+                                .requestMatchers("/*").permitAll()
+                                .requestMatchers("/admin/**").permitAll()
+//                        .requestMatchers("/admin/**").hasAuthority("ADMIN")
+                                .anyRequest().authenticated()
+                )
+                .formLogin(login -> login
+                        .loginPage("/logon")
+                        .loginProcessingUrl("/logon")
+                        .usernameParameter("username")
+                        .passwordParameter("password")
+                        .defaultSuccessUrl("/admin", true)
+                )
+                .logout(logout -> logout
+                        .logoutUrl("/admin-logout")  // URL to trigger the logout
+                        .logoutSuccessUrl("/logon")  // Redirect URL after logout
+                        .invalidateHttpSession(true)  // Invalidate the HTTP session
+                        .deleteCookies("JSESSIONID")  // Delete cookies if any
+                        .permitAll()  // Allow access to the logout URL without authentication
+                );
         return httpSecurity.build();
     }
+
     @Bean
-    WebSecurityCustomizer webSecurityCustomizer(){
-        return (web)->web.ignoring().requestMatchers("/static/**" , "/fe/**" , "assets/**");
+    WebSecurityCustomizer webSecurityCustomizer() {
+        return (web) -> web.ignoring().requestMatchers("/static/**", "/fe/**", "assets/**");
 
     }
 
