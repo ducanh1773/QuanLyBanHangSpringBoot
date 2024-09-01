@@ -23,7 +23,9 @@ public class CategoryController {
     }
 
     @RequestMapping("/add-category")
-    public String add(){
+    public String add(Model model){
+        Category category = new Category();
+        model.addAttribute("category" , category);
         return "admin/category/add";
     }
 }

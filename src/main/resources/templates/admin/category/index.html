@@ -53,8 +53,8 @@
               <tr th:each="category : ${list}">
                 <td th:text="${category.categoryId}"></td>
                 <td th:text="${category.categoryName}"> </td>
-                <td th:if="${category.categoryStatus}">yes</td>
-                <td th:if="${category.categoryStatus}">no</td>
+                <td th:if="${category.categoryStatus}"><span class="label label-success">Hiện </span></td>
+                <td th:if="${category.categoryStatus}"><span class="label label-danger">Ẩn  </span></td>
 
 
               </tr>
