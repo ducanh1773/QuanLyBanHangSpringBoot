@@ -44,22 +44,22 @@
           <div class="box-body">
             <div class="form-group">
               <label for="exampleInputEmail1">Category Name</label>
-              <input type="text" class="form-control" id="exampleInputEmail1" th:field="${categoryName}">
+              <input type="text" class="form-control" id="exampleInputEmail1" th:field="*{categoryName}">
             </div>
             <div class="form-group">
               <label for="exampleInputPassword1">Category Status</label>
-              <input type="password" class="form-control" id="exampleInputPassword1" th:field="${categoryStatus}">
+              <input type="password" class="form-control" id="exampleInputPassword1" th:field="*{categoryStatus}">
             </div>
             <label for="exampleInputEmail1">Category Status</label>
             <div>
               <div class="form-check form-check-inline">
-                <input type="radio" class="form-check-input"value="1" th:field="${categoryName}" />
-                <label class="form-check-label" for="inlineRadio1">Active</label>
+                <input type="radio" class="form-check-input"value="1" th:field="*{categoryName}" />
+                <label class="form-check-label" >Active</label>
               </div>
 
               <div class="form-check form-check-inline">
                 <input type="radio" class="form-check-input"  value="0"/>
-                <label class="form-check-label" for="inlineRadio2">Hidden</label>
+                <label class="form-check-label" >Hidden</label>
               </div>
             </div>
 

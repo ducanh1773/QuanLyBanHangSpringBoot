@@ -20,7 +20,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Boolean creat(Category category) {
+    public Boolean create(Category category) {
         try {
             this.categoryRepository.save(category);
             return true;
@@ -32,12 +32,20 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Category findById(Integer id) {
-        return null;
+
+        return this.categoryRepository.findById(id).get();
     }
 
     @Override
     public Boolean update(Category category) {
-        return null;
+
+        try {
+            this.categoryRepository.save(category);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     @Override
