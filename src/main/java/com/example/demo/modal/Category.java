@@ -18,9 +18,9 @@ public class Category {
         // TODO Auto-generated constructor stub
     }
 
-    public Category(Integer categoryId, String categoryName, Boolean categoryStatus) {
+    public Category(Integer id, String categoryName, Boolean categoryStatus) {
         super();
-        this.id = categoryId;
+        this.id = id;
         this.categoryName = categoryName;
         this.categoryStatus = categoryStatus;
     }
@@ -29,8 +29,8 @@ public class Category {
         return id;
     }
 
-    public void setCategoryId(Integer categoryId) {
-        this.id = categoryId;
+    public void setCategoryId(Integer id) {
+        this.id = id;
     }
 
     public String getCategoryName() {

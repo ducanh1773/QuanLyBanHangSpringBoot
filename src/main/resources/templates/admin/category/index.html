@@ -48,14 +48,20 @@
                 <th style="width: 10px">ID</th>
                 <th>Category Name</th>
                 <th>Status</th>
-                <th style="width: 40px">Action</th>
+                <th>Action</th>
               </tr>
               <tr th:each="category : ${list}">
-                <td th:text="${category.categoryId}"></td>
-                <td th:text="${category.categoryName}"> </td>
-                <td th:if="${category.categoryStatus}"><span class="label label-success">Hiện </span></td>
-                <td th:if="${category.categoryStatus}"><span class="label label-danger">Ẩn  </span></td>
 
+                  <td th:text="${category.categoryId}"></td>
+                  <td th:text="${category.categoryName}"></td>
+                <td th:if="${category.categoryStatus}">
+                  <span class="label label-success">Hiện</span>
+                </td>
+
+
+                <td>
+                    <a class="btn btn-success" th:href="@{/admin/edit-category/{id}(id=${category.id})}">Edit </a>
+                </td>
 
               </tr>
 
@@ -78,7 +84,9 @@
 
       </div>
       <!-- /.box-footer-->
-  </div>
+
+
+
   <!-- /.box -->
 
   </section>
