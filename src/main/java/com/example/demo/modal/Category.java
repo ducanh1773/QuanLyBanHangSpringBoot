@@ -2,6 +2,8 @@ package com.example.demo.modal;
 
 import jakarta.persistence.*;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "categories")
 public class Category {
@@ -13,16 +15,17 @@ public class Category {
     private String categoryName;
     @Column(name = "categoryStatus")
     private Boolean categoryStatus;
-
+    @OneToMany(mappedBy = "category")
+    private Set<Product> products;
     public Category() {
         // TODO Auto-generated constructor stub
     }
 
-    public Category(Integer id, String categoryName, Boolean categoryStatus) {
-        super();
+    public Category(Integer id, String categoryName, Boolean categoryStatus, Set<Product> products) {
         this.id = id;
         this.categoryName = categoryName;
         this.categoryStatus = categoryStatus;
+        this.products = products;
     }
 
     public Integer getCategoryId() {
@@ -49,5 +52,19 @@ public class Category {
         this.categoryStatus = categoryStatus;
     }
 
+    public Set<Product> getProducts() {
+        return products;
+    }
 
+    public void setProducts(Set<Product> products) {
+        this.products = products;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 }
