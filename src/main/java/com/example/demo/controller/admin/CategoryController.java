@@ -47,4 +47,10 @@ public class CategoryController {
         model.addAttribute("category" , category);
         return "admin/category/edit";
     }
+        @GetMapping("/categories")
+        public String getCategories(Model model) {
+            List<Category> listCate = categoryService.getAll();
+            model.addAttribute("listCate", listCate);
+            return "categories";
+        }
 }
